@@ -165,43 +165,34 @@ def component_syllables_for_name(line: str) -> list[tuple[str, str]]:
 
 def convert_lines(lines: list[str]) -> list[str]:
     converted: list[str] = []
-    seen: set[str] = set()
     for line in lines:
         stripped = line.strip()
         if not stripped:
             continue
         converted_name = convert_training_name(stripped)
-        if converted_name not in seen:
-            seen.add(converted_name)
-            converted.append(converted_name)
+        converted.append(converted_name)
     return converted
 
 
 def convert_lines_structured(lines: list[str]) -> list[str]:
     converted: list[str] = []
-    seen: set[str] = set()
     for line in lines:
         stripped = line.strip()
         if not stripped:
             continue
         converted_name = convert_training_name_structured(stripped)
-        if converted_name not in seen:
-            seen.add(converted_name)
-            converted.append(converted_name)
+        converted.append(converted_name)
     return converted
 
 
 def convert_lines_components(lines: list[str]) -> list[str]:
     converted: list[str] = []
-    seen: set[str] = set()
     for line in lines:
         stripped = line.strip()
         if not stripped:
             continue
         converted_name = convert_training_name_components(stripped)
-        if converted_name not in seen:
-            seen.add(converted_name)
-            converted.append(converted_name)
+        converted.append(converted_name)
     return converted
 
 
