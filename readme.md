@@ -2,6 +2,6 @@
 >
 
 ## 00.XuanHuanNameGenerator
-> 参考：
-> https://github.com/karpathy/makemore
-> https://www.bilibili.com/video/BV1mqrTBvEaf
+- 参考：
+  - https://github.com/karpathy/makemore
+  - https://www.bilibili.com/video/BV1mqrTBvEaf
