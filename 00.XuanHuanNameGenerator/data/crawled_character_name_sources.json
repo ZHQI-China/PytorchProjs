@@ -1,0 +1,56 @@
+[
+  {
+    "title": "fanren_extracted_names",
+    "url": "C:\\Users\\ZHQI\\Desktop\\PytorchProjs\\00.FantasyNameGenerator\\data\\fanren\\fanren_extracted_names.txt",
+    "status": "ok",
+    "count": 157
+  },
+  {
+    "title": "斗破苍穹",
+    "url": "https://zh.wikipedia.org/wiki/%E6%96%97%E7%A0%B4%E8%8B%8D%E7%A9%B9",
+    "status": "ok",
+    "count": 756
+  },
+  {
+    "title": "凡人修仙传",
+    "url": "https://zh.wikipedia.org/wiki/%E5%87%A1%E4%BA%BA%E4%BF%AE%E4%BB%99%E4%BC%A0",
+    "status": "ok",
+    "count": 427
+  },
+  {
+    "title": "凡人修仙之仙界篇",
+    "url": "https://zh.wikipedia.org/wiki/%E5%87%A1%E4%BA%BA%E4%BF%AE%E4%BB%99%E4%B9%8B%E4%BB%99%E7%95%8C%E7%AF%87",
+    "status": "ok",
+    "count": 655
+  },
+  {
+    "title": "诛仙",
+    "url": "https://zh.wikipedia.org/wiki/%E8%AA%85%E4%BB%99",
+    "status": "ok",
+    "count": 786
+  },
+  {
+    "title": "星辰变",
+    "url": "https://zh.wikipedia.org/wiki/%E6%98%9F%E8%BE%B0%E8%AE%8A",
+    "status": "ok",
+    "count": 161
+  },
+  {
+    "title": "雪中悍刀行",
+    "url": "https://zh.wikipedia.org/wiki/%E9%9B%AA%E4%B8%AD%E6%82%8D%E5%88%80%E8%A1%8C",
+    "status": "ok",
+    "count": 3740
+  },
+  {
+    "title": "斗罗大陆",
+    "url": "https://zh.wikipedia.org/wiki/%E6%96%97%E7%BE%85%E5%A4%A7%E9%99%B8",
+    "status": "ok",
+    "count": 328
+  },
+  {
+    "title": "凡人修仙传角色指南",
+    "url": "https://www.im-mortal.cn/game_wiki/normal_character",
+    "status": "ok",
+    "count": 4240
+  }
+]
