@@ -3,6 +3,7 @@ __pycache__/
 .ipynb_checkpoints/
 .vscode/
 *.log
+tests/
 
 # Large/raw source texts that can be regenerated or are not needed for code review.
 00.XuanHuanNameGenerator/data/fanren/fanrenxiuxianzhuan.txt
