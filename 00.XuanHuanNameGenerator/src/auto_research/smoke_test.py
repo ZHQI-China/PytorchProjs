@@ -2,13 +2,15 @@ import sys
 import unittest
 from pathlib import Path
 
+import torch
+
 ROOT = Path(__file__).resolve().parents[2]
 SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from auto_research import prepare
-from auto_research.train import NameMLP
+from auto_research.train import NameMLP, current_peak_memory_gb
 
 
 class AutoResearchSmokeTest(unittest.TestCase):
@@ -48,6 +50,9 @@ class AutoResearchSmokeTest(unittest.TestCase):
         self.assertTrue(prepare.is_valid_sample(["h", "an", "|", "l", "i"]))
         self.assertFalse(prepare.is_valid_sample(["h", "an", "l", "i"]))
         self.assertFalse(prepare.is_valid_sample(["h", "bad", "|", "l", "i"]))
+
+    def test_cpu_memory_metric_is_informative(self):
+        self.assertGreater(current_peak_memory_gb(torch.device("cpu")), 0.0)
 
 
 if __name__ == "__main__":

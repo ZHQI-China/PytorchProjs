@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import math
 import os
+import platform
 import sys
 import time
 from dataclasses import asdict, dataclass
@@ -83,6 +84,47 @@ def get_lr(config: TrainConfig, step: int) -> float:
 def current_peak_memory_gb(device: torch.device) -> float:
     if device.type == "cuda":
         return torch.cuda.max_memory_allocated() / 1024 / 1024 / 1024
+    if platform.system() == "Windows":
+        import ctypes
+        from ctypes import wintypes
+
+        class ProcessMemoryCounters(ctypes.Structure):
+            _fields_ = [
+                ("cb", wintypes.DWORD),
+                ("PageFaultCount", wintypes.DWORD),
+                ("PeakWorkingSetSize", ctypes.c_size_t),
+                ("WorkingSetSize", ctypes.c_size_t),
+                ("QuotaPeakPagedPoolUsage", ctypes.c_size_t),
+                ("QuotaPagedPoolUsage", ctypes.c_size_t),
+                ("QuotaPeakNonPagedPoolUsage", ctypes.c_size_t),
+                ("QuotaNonPagedPoolUsage", ctypes.c_size_t),
+                ("PagefileUsage", ctypes.c_size_t),
+                ("PeakPagefileUsage", ctypes.c_size_t),
+            ]
+
+        psapi = ctypes.WinDLL("psapi.dll")
+        kernel32 = ctypes.WinDLL("kernel32.dll")
+        kernel32.GetCurrentProcess.restype = wintypes.HANDLE
+        psapi.GetProcessMemoryInfo.argtypes = [
+            wintypes.HANDLE,
+            ctypes.POINTER(ProcessMemoryCounters),
+            wintypes.DWORD,
+        ]
+        psapi.GetProcessMemoryInfo.restype = wintypes.BOOL
+
+        counters = ProcessMemoryCounters()
+        counters.cb = ctypes.sizeof(counters)
+        handle = kernel32.GetCurrentProcess()
+        ok = psapi.GetProcessMemoryInfo(handle, ctypes.byref(counters), counters.cb)
+        if ok:
+            return counters.PeakWorkingSetSize / 1024 / 1024 / 1024
+    try:
+        import resource
+
+        peak_kb = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+        return peak_kb / 1024 / 1024
+    except (ImportError, AttributeError):
+        return 0.0
     return 0.0
 
 
