@@ -52,3 +52,7 @@ f884fa1	1.355027	0.2	keep	small_mlp hidden_dim=64 emb2 batch32 lr0.3 fixed200k
 c5f3401	1.391334	0.2	discard	small_mlp hidden_dim=32 emb2 batch32 lr0.3 fixed200k
 c4ed03a	1.360801	0.2	discard	small_mlp hidden_dim=48 emb2 batch32 lr0.3 fixed200k
 591a4a9	1.354182	0.2	keep	small_mlp hidden_dim=80 emb2 batch32 lr0.3 fixed200k
+3614710	1.358247	0.2	discard	small_mlp hidden_dim=96 emb2 batch32 lr0.3 fixed200k
+29bab04	1.355047	0.2	discard	small_mlp hidden_dim=72 emb2 batch32 lr0.3 fixed200k
+f2ec82b	1.357140	0.2	discard	small_mlp hidden_dim=88 emb2 batch32 lr0.3 fixed200k
+f24c432	1.354143	0.2	keep	small_mlp batch_size=64 hidden80 emb2 lr0.3 fixed200k
