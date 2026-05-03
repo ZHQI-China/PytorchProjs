@@ -34,7 +34,7 @@ class TrainConfig:
     block_size: int = 3
     embedding_dim: int = 8
     hidden_dim: int = 128
-    batch_size: int = 256
+    batch_size: int = 512
     lr_base: float = 0.45
     lr_min: float = 1e-5
     warmup_steps: int = 10_000
