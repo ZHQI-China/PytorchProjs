@@ -32,7 +32,7 @@ class TrainConfig:
     seed: int = 0
     block_size: int = 3
     embedding_dim: int = 4
-    hidden_dim: int = 100
+    hidden_dim: int = 128
     batch_size: int = 32
     lr_base: float = 0.1
     lr_min: float = 1e-5
