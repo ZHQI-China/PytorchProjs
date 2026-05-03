@@ -32,7 +32,7 @@ from auto_research import prepare
 class TrainConfig:
     seed: int = 0
     block_size: int = 3
-    embedding_dim: int = 4
+    embedding_dim: int = 6
     hidden_dim: int = 128
     batch_size: int = 64
     lr_base: float = 0.2
