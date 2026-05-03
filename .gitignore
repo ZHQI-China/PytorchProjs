@@ -4,6 +4,7 @@ __pycache__/
 .vscode/
 *.log
 tests/
+00.XuanHuanNameGenerator/records/auto_research/
 
 # Large/raw source texts that can be regenerated or are not needed for code review.
 00.XuanHuanNameGenerator/data/fanren/fanrenxiuxianzhuan.txt
