@@ -45,6 +45,13 @@ STRUCTURAL_LINES = {
     "草堂闲人整理",
 }
 
+ARTICLE_NOTE_PREFIXES = (
+    "毛泽东同志此文",
+    "毛泽东此文",
+    "这是毛泽东同志",
+    "这是毛泽东",
+)
+
 
 SENTENCE_ENDINGS = "。！？；.!?;"
 TITLE_ENDINGS = "。！？；，、：,.!?;:"
@@ -133,6 +140,14 @@ def is_source_note(line: str) -> bool:
         or line.startswith("（根据")
         or line.startswith("(根据")
         or line.startswith("*这是")
+        or line.startswith(ARTICLE_NOTE_PREFIXES)
+        or ("mzdbl" in line.lower() and "网站" in line)
+        or ("网站编辑制作" in line and line.startswith(("人个", "多个", "る", "イ", "公末")))
+        or "书号" in line
+        or "定价" in line
+        or ("印刷" in line and ("出版" in line or "发行" in line))
+        or ("人不女" in line and ("出版" in line or "发行" in line or "重印" in line or "印刷" in line))
+        or ("重印" in line and "印刷" in line)
     )
 
 
@@ -205,17 +220,27 @@ def find_inline_article_start(line: str, index: int) -> ArticleStart | None:
 
     title = clean_title(match.group(1))
     date = match.group(2)
+    body_after_date = match.group(3).strip()
     if "版" in date:
+        return None
+    if not body_after_date or is_toc_tail(body_after_date):
         return None
     if not is_article_title_line(title):
         return None
 
-    body_after_date = match.group(3).strip()
     return ArticleStart(
         title=title,
         date=normalize_date(date),
         date_index=index,
         body_after_date=body_after_date,
+    )
+
+
+def is_toc_tail(text: str) -> bool:
+    return bool(
+        text.startswith(("…", "·", "."))
+        or re.match(r"^[…·.\s\d一二三四五六七八九十零〇○\-—]+$", text)
+        or re.search(r"[一二三四五六七八九十零〇○\d]\s*[一\-—]\s*\d", text)
     )
 
 
@@ -234,6 +259,29 @@ def render_paragraph(paragraph_lines: list[str]) -> str:
     return "".join(part.strip() for part in paragraph_lines if part.strip())
 
 
+def clean_body_line(line: str, current_title: str = "") -> str:
+    line = re.split(r"\*这是", line, maxsplit=1)[0]
+    line = re.split(r"书号|定价", line, maxsplit=1)[0]
+    line = re.sub(
+        r"(?:人个|多个|るイ|イ)?[《（]?[海特诗]?[意鬼气]?网站编辑制作\s*w+[\s.]*mz[o0O][dD][lI1]?",
+        "",
+        line,
+        flags=re.IGNORECASE,
+    )
+    line = re.sub(r"(?:人个|多个|るイ|イ)?[《（]?[海特诗]?[意鬼气]?网站编辑制作", "", line)
+    had_artifact = bool(
+        re.search(r"w+[\s.]*m(?:a|z)?d?bl\s*\.?\s*cn", line, flags=re.IGNORECASE)
+        or re.search(r"w+[\s.]*mz[o0O][dD][lI1]?", line, flags=re.IGNORECASE)
+        or re.search(r"\d*\s*毛泽东选集", line)
+    )
+    line = re.sub(r"w+[\s.]*m(?:a|z)?d?bl\s*\.?\s*cn", "", line, flags=re.IGNORECASE)
+    line = re.sub(r"w+[\s.]*mz[o0O][dD][lI1]?", "", line, flags=re.IGNORECASE)
+    line = re.sub(r"\d*\s*毛泽东选集(?:第一次国内革命战争时期|第二次国内革命战争时期|抗日战争时期|第三次国内革命战争时期|社会主义革命和社会主义建设时期)?", "", line)
+    if current_title and had_artifact:
+        line = line.replace(current_title, "")
+    return line.strip()
+
+
 def extract_text(lines: list[str], dedupe: bool = True) -> tuple[str, int, int]:
     output: list[str] = []
     paragraph_lines: list[str] = []
@@ -243,6 +291,7 @@ def extract_text(lines: list[str], dedupe: bool = True) -> tuple[str, int, int]:
     in_article = False
     skipping_duplicate = False
     skipping_notes = False
+    current_title = ""
 
     def flush_paragraph() -> None:
         if not in_article or skipping_duplicate or not paragraph_lines:
@@ -255,11 +304,12 @@ def extract_text(lines: list[str], dedupe: bool = True) -> tuple[str, int, int]:
             output.append("")
 
     def start_article(article: ArticleStart) -> None:
-        nonlocal article_count, duplicate_count, in_article, skipping_duplicate, skipping_notes
+        nonlocal article_count, duplicate_count, in_article, skipping_duplicate, skipping_notes, current_title
         flush_paragraph()
         key = title_key(article.title)
         skipping_notes = False
         in_article = True
+        current_title = article.title
 
         if dedupe and key in seen_titles:
             duplicate_count += 1
@@ -273,7 +323,9 @@ def extract_text(lines: list[str], dedupe: bool = True) -> tuple[str, int, int]:
             output.append("")
         output.extend([article.title, "", article.date, ""])
         if article.body_after_date and not is_source_note(article.body_after_date):
-            paragraph_lines.append(article.body_after_date)
+            body_after_date = clean_body_line(article.body_after_date, current_title)
+            if body_after_date:
+                paragraph_lines.append(body_after_date)
 
     index = 0
     while index < len(lines):
@@ -288,10 +340,14 @@ def extract_text(lines: list[str], dedupe: bool = True) -> tuple[str, int, int]:
             index += 1
             continue
 
-        if line == "注释" or line.startswith(("注释:", "注释：")):
+        if (
+            line == "注释"
+            or line.startswith(("注释:", "注释："))
+            or (line == "注" and index + 1 < len(lines) and lines[index + 1] == "释")
+        ):
             flush_paragraph()
             skipping_notes = True
-            index += 1
+            index += 2 if line == "注" else 1
             continue
 
         if skipping_notes:
@@ -313,7 +369,7 @@ def extract_text(lines: list[str], dedupe: bool = True) -> tuple[str, int, int]:
 
         if is_structural_line(line) or is_source_note(line):
             flush_paragraph()
-            if is_source_note(line):
+            if is_source_note(line) and not line.startswith(ARTICLE_NOTE_PREFIXES):
                 skipping_notes = True
             index += 1
             continue
@@ -322,6 +378,16 @@ def extract_text(lines: list[str], dedupe: bool = True) -> tuple[str, int, int]:
             flush_paragraph()
             output.append(line)
             output.append("")
+            index += 1
+            continue
+
+        if current_title and clean_title(line) == current_title:
+            flush_paragraph()
+            index += 1
+            continue
+
+        line = clean_body_line(line, current_title)
+        if not line:
             index += 1
             continue
 

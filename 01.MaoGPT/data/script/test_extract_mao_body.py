@@ -32,10 +32,14 @@ class ExtractMaoBodyTests(unittest.TestCase):
                 "（一九二五年十二月一日）",
                 "谁是我们的敌人？谁是我们的朋友？这个问题是革命的首要问",
                 "题。",
+                "毛泽东同志此文是为反对当时党内存在着的两种倾向而写的。",
+                "www madbl.cn",
                 "一",
                 "这是第一节的第一",
+                "www madbl.cn中国社会各阶级的分析",
                 "段。",
-                "注释",
+                "注",
+                "释",
                 "* 这里是注释，应该删除。",
                 "（2）戴季陶",
                 "（一八九一———一九四九）",
@@ -74,6 +78,8 @@ class ExtractMaoBodyTests(unittest.TestCase):
         self.assertNotIn("目录", result)
         self.assertNotIn("=====第", result)
         self.assertNotIn("注释", result)
+        self.assertNotIn("毛泽东同志此文", result)
+        self.assertNotIn("madbl", result)
         self.assertNotIn("戴季陶", result)
         self.assertNotIn("注释人名不应输出", result)
         self.assertNotIn("重复文章不应输出", result)
@@ -88,6 +94,7 @@ class ExtractMaoBodyTests(unittest.TestCase):
                 "根据中央文献出版社、世界知识出版社一九九四年出版的",
                 "《毛泽东外交文选》刊印。",
                 "毛泽东选集第一、二、三、四卷（一九九一年版)",
+                "中国社会各阶级的分析（一九二五年十二月一日）…3一11湖南农民运动考察报告（一九二七年三月）…12一44",
                 "革命单搞军事不行",
                 "(1964年5月25日）",
                 "革命单搞军事不行，如不建立根据地，跟群众没有密切联系。",
@@ -95,7 +102,14 @@ class ExtractMaoBodyTests(unittest.TestCase):
                 "注释:",
                 "[1] 这条注释应删除。",
                 "谈学生健康问题(一九五八年一月三十日）要使学生身体好。",
+                "正文前半句。*这是行内题解，应删除。",
+                "正文前半句人个《海意网站编辑制作www.mzoDl正文后半句。",
+                "るイ网站编辑制作",
+                "www.mzoDl",
                 "*这是题解，应删除。注释：[1] 注释也应删除。",
+                "《毛泽东博览》网站www.mzdbl.cn",
+                "人不女次社出版服莱专店发行辽宁人不女饮社重印沈阳新华印刷厂印刷",
+                "辽宁人不女饮社重印沈阳新华印刷厂印刷",
                 "",
             ]
         )
@@ -115,12 +129,19 @@ class ExtractMaoBodyTests(unittest.TestCase):
         self.assertIn("谈学生健康问题", result)
         self.assertIn("（一九五八年一月三十日）", result)
         self.assertIn("要使学生身体好。", result)
+        self.assertIn("正文前半句。", result)
+        self.assertIn("正文前半句正文后半句。", result)
         self.assertNotIn("根据一九六四年四月十七日", result)
         self.assertNotIn("毛泽东选集第一、二、三、四卷", result)
+        self.assertNotIn("…3一11", result)
         self.assertNotIn("草堂闲人 整理", result)
         self.assertNotIn("注释", result)
         self.assertNotIn("这条注释应删除", result)
         self.assertNotIn("题解", result)
+        self.assertNotIn("mzdbl", result)
+        self.assertNotIn("mzoDl", result)
+        self.assertNotIn("网站编辑制作", result)
+        self.assertNotIn("人不女", result)
 
 
 if __name__ == "__main__":
