@@ -1,0 +1,101 @@
+﻿idx,valid,token_len,pinyin_tokens,name
+0,True,7,t an | zh i m ing,谭执明
+1,True,7,sh i | m o b ai,史莫百
+2,True,7,l i | x uan h eng,璃轩衡
+3,True,7,zh eng | h uai n ing,郑怀宁
+4,True,7,b ai | y ao n ing,百遥宁
+5,True,7,d ing | q ing h e,丁晴贺
+6,True,7,y uan | zh ang _ an,元长安
+7,True,7,l uo | x uan y u,罗玄瑜
+8,True,9,d ong g uo | l an y ue,东郭岚岳
+9,True,5,t ong | x i,童希
+10,True,7,w u | l an n ing,无兰宁
+11,True,7,n ie | y u h ang,聂尉珩
+12,True,7,d ing | y ao y ue,丁瑶月
+13,True,7,h e | q ing l an,贺青兰
+14,True,7,x i | z i h eng,西子衡
+15,True,5,zh ong | l in,钟林
+16,True,7,b o | m o b ai,卜墨柏
+17,True,7,t ang | y un ch u,唐云楚
+18,True,7,w u | g ui ch en,舞归陈
+19,True,7,l in | x ing zh ou,林邢舟
+20,True,7,j iang | q ing zh u,姜青诸
+21,True,7,g u | ch eng n ing,谷成宁
+22,True,5,b o | y un,卜韵
+23,True,7,zh eng | l ing j un,郑灵均
+24,True,5,f ang | l in,方临
+25,True,5,ch eng | l an,程澜
+26,True,7,zh ao | zh ang m ing,昭长明
+27,True,7,l u | zh ao h ua,路照华
+28,True,7,m u | q ing m ing,慕清明
+29,True,5,k ong | h eng,孔衡
+30,True,7,g e | x ue t ang,葛雪汤
+31,True,7,x iao | j ing m ing,霄璟冥
+32,True,7,b i | m ing y uan,毕明元
+33,True,7,x iao | r uo q ing,霄若青
+34,True,7,d i | h uai n ing,翟怀宁
+35,True,7,zh ong l i | zh ou,钟厉洲
+36,True,7,h uang | l an n ing,皇兰宁
+37,True,7,d ing | h uai j in,丁怀瑾
+38,True,7,y u | t ing y u,于听雨
+39,True,5,m a | q iu,马秋
+40,True,7,x u | t ing l an,徐听澜
+41,True,7,y in | sh ou zh en,音守甄
+42,True,5,zh u | y un,朱云
+43,True,7,n iu | x ing zh ou,牛行周
+44,True,7,w ei | ch eng y ing,魏成影
+45,True,7,l iu | w an q ing,刘晚青
+46,True,7,y u | q ing y uan,宇清元
+47,True,5,g uo | r an,郭然
+48,True,5,m a | r uo,马若
+49,True,7,b ao | r uo x i,包若西
+50,True,7,_ an | q ing c i,安晴辞
+51,True,7,z eng | zh ao m ing,曾赵明
+52,True,5,x iao | b ai,萧白
+53,True,9,zh ong l i | x uan m ing,钟黎轩明
+54,True,7,h uang | t ing x ue,黄听雪
+55,True,7,y i | zh i q iu,易执秋
+56,True,7,n iu | r uo _ an,牛若安
+57,True,5,x iao | zh ao,萧照
+58,True,5,r en | y an,任晏
+59,True,7,m eng | w u y ang,孟无杨
+60,True,7,d ong | y un ch e,动韵澈
+61,True,7,m a | x ue t ang,马雪唐
+62,True,7,s un | l an w ei,孙兰卫
+63,True,7,x ia | y un q i,夏韵起
+64,True,7,y e | zh i m ing,夜知明
+65,True,7,f an | g ui y ue,范归岳
+66,True,7,c ai | y ao q ing,蔡姚清
+67,True,7,zh uang | h uai _ an,庄怀安
+68,True,7,h e | z i q ing,赫子晴
+69,True,7,l an | w u j iu,岚无咎
+70,True,7,zh an | z i q ing,詹子晴
+71,True,7,l iang | l an w ei,梁澜魏
+72,True,7,w u | z i y uan,武子袁
+73,True,7,l an | sh ao b ai,澜邵百
+74,True,7,y an | j ing h e,颜璟赫
+75,True,7,h uang | z i j in,皇子靳
+76,True,9,zh u g e | x ing zh ou,祝葛行舟
+77,True,5,b o | h eng,卜衡
+78,True,7,l ai | l ing w ei,赖凌卫
+79,True,9,s i t u | h an zh ang,司涂寒章
+80,True,5,y uan | y an,辕阎
+81,True,9,w en r en | l ing w ei,文人灵微
+82,True,9,d uan m u | t ing x ue,端牧听薛
+83,True,7,z eng | h an zh ang,曾含长
+84,True,7,sh en | zh i y uan,深知元
+85,True,7,y uan | r uo n ing,元若宁
+86,True,7,y ue | w u ch en,月无尘
+87,True,7,t ao | l an q ing,陶兰清
+88,True,7,t ang | y u w en,唐俞温
+89,True,7,r en | x ing h e,任行何
+90,True,5,zh uang | y ue,庄月
+91,True,7,t ian | sh ao b ai,田少柏
+92,True,7,f an | x ing zh ou,范行洲
+93,True,7,f u | w u y ang,扶吴扬
+94,True,7,q in | y ao q ing,秦遥晴
+95,True,7,t ang | x ing y ao,棠邢姚
+96,True,7,l u | j ing h e,芦璟和
+97,True,7,y e | y ao y in,夜摇尹
+98,True,7,g eng | x ue zh u,庚薛竹
+99,True,7,n iu | t ing l an,牛听兰
