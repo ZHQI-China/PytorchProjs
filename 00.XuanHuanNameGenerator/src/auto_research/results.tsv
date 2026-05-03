@@ -32,3 +32,18 @@ b64ca20	1.522776	0.2	discard	block_size=2 on current best
 bfb8a1e	1.360098	0.2	discard	batch_size=6144 on batch_size=4096 best
 d05bf01	1.358832	0.2	discard	lr_base=0.425 on lr_base=0.4 best
 8845fc6	1.367723	0.2	discard	squared_relu activation on current best
+693ffdc	1.358818	0.2	discard	300s long run of current best config
+31c3b73	1.361850	0.2	discard	warmup_steps=5000 lr schedule
+89960f9	1.361285	0.2	discard	warmup_steps=15000 lr schedule
+5b6deb6	1.359217	0.2	discard	lr_min=1e-4 lr schedule
+1116335	1.362244	0.2	discard	constant_lr_after_warmup lr schedule
+baebd6d	1.358814	0.2	discard	linear_decay lr schedule
+354a0fd	1.359089	0.2	discard	cosine_decay_span=5000 lr schedule
+6d583de	1.360032	0.2	discard	cosine_decay_span=15000 lr schedule
+3e56a99	1.358773	0.2	keep	lr_base=0.375 lr schedule
+49be7e2	1.358769	0.2	keep	lr_base=0.385 lr schedule
+7ad69d9	1.359059	0.2	discard	lr_base=0.39 lr schedule
+ed00a02	1.359593	0.2	discard	staged_lr_decay max_steps=20000 no warmup
+2c0d800	1.362403	0.2	discard	staged_lr_decay after warmup max_steps=20000
+d665a54	1.364043	0.2	discard	staged_lr_decay max_steps=200000 no warmup
+6591bd3	1.363897	0.2	discard	staged_lr_decay max_steps=50000 no warmup
