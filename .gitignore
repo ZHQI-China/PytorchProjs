@@ -3,6 +3,7 @@ __pycache__/
 .ipynb_checkpoints/
 .vscode/
 *.log
+*.log.err
 tests/
 00.XuanHuanNameGenerator/records/auto_research/
 

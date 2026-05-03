@@ -21,6 +21,10 @@ Run from `00.XuanHuanNameGenerator`:
 python src/auto_research/train.py > run.log 2>&1
 ```
 
+Each experiment uses a fixed 60 second wall-clock training budget. The old
+notebook took about one minute per configuration, so this keeps the experiment
+loop fast while still comparable.
+
 The migrated baseline is:
 
 - `block_size=3`

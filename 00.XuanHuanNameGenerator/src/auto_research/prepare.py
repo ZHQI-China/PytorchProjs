@@ -23,7 +23,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATA_PATH = PROJECT_ROOT / "data" / "names1" / "names1_pinyin_components.txt"
 CHAR_MAPPING_PATH = PROJECT_ROOT / "data" / "names1" / "pinyin_components_to_hanzi_chars1.txt"
 RECORDS_DIR = PROJECT_ROOT / "records" / "auto_research"
-TIME_BUDGET = 300.0
+TIME_BUDGET = 60.0
 EVAL_SAMPLE_COUNT = 100
 MAX_SAMPLE_TOKENS = 20
 
