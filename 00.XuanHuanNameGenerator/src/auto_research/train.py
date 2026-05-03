@@ -32,12 +32,13 @@ from auto_research import prepare
 class TrainConfig:
     seed: int = 0
     block_size: int = 3
-    embedding_dim: int = 8
-    hidden_dim: int = 128
-    batch_size: int = 4096
-    lr_base: float = 0.385
+    embedding_dim: int = 2
+    hidden_dim: int = 100
+    batch_size: int = 32
+    lr_base: float = 0.3
     lr_min: float = 1e-5
     warmup_steps: int = 10_000
+    max_steps: int = 200_000
     time_budget: float = prepare.TIME_BUDGET
     eval_batch_size: int = 4096
 
@@ -75,10 +76,11 @@ def init_model(config: TrainConfig, vocab_size: int, device: torch.device) -> Na
 
 
 def get_lr(config: TrainConfig, step: int) -> float:
-    if step < config.warmup_steps:
-        return config.lr_base * (step / max(1, config.warmup_steps))
-    progress = min(1.0, (step - config.warmup_steps) / max(1, config.warmup_steps))
-    return config.lr_min + 0.5 * (config.lr_base - config.lr_min) * (1.0 + math.cos(math.pi * progress))
+    if step < config.max_steps / 2:
+        return config.lr_base
+    if step > config.max_steps - config.max_steps / 4:
+        return config.lr_base / 100
+    return config.lr_base / 10
 
 
 def current_peak_memory_gb(device: torch.device) -> float:
@@ -176,7 +178,7 @@ def train(config: TrainConfig):
             raise SystemExit(1)
 
         step += 1
-        if elapsed >= config.time_budget:
+        if step >= config.max_steps:
             break
 
     training_seconds = time.time() - t_start_training
