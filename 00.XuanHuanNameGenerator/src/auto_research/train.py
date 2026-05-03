@@ -35,7 +35,7 @@ class TrainConfig:
     embedding_dim: int = 4
     hidden_dim: int = 128
     batch_size: int = 64
-    lr_base: float = 0.1
+    lr_base: float = 0.2
     lr_min: float = 1e-5
     warmup_steps: int = 10_000
     time_budget: float = prepare.TIME_BUDGET
