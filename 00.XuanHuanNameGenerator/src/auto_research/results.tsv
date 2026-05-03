@@ -49,3 +49,6 @@ d665a54	1.364043	0.2	discard	staged_lr_decay max_steps=200000 no warmup
 6591bd3	1.363897	0.2	discard	staged_lr_decay max_steps=50000 no warmup
 95644fe	1.357687	0.1	keep	fixed_200k_steps small_mlp staged_lr seed0 bs3 emb2 hidden100 batch32 lr0.3
 f884fa1	1.355027	0.2	keep	small_mlp hidden_dim=64 emb2 batch32 lr0.3 fixed200k
+c5f3401	1.391334	0.2	discard	small_mlp hidden_dim=32 emb2 batch32 lr0.3 fixed200k
+c4ed03a	1.360801	0.2	discard	small_mlp hidden_dim=48 emb2 batch32 lr0.3 fixed200k
+591a4a9	1.354182	0.2	keep	small_mlp hidden_dim=80 emb2 batch32 lr0.3 fixed200k
